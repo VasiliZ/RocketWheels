@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 23)
+@Config(constants = BuildConfig.class, sdk = 21)
 public class RobolectricTestLoginActivity {
 
     private ActivityController<LoginActivity> mLoginActivityActivityController;
@@ -44,7 +44,5 @@ public class RobolectricTestLoginActivity {
 
         boolean loginButtonIsEnabled = loginActivity.findViewById(R.id.send_auth_data).isEnabled();
         assertEquals(loginButtonIsEnabled, true);
-        assertFalse(loginButtonIsEnabled);
-
     }
 }

@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".userAuth.view.WebForLoginView"></activity>
+        <activity android:name=".userAuth.view.WebForLoginActivity"></activity>
         <activity
             android:name=".backend.BackendSample"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

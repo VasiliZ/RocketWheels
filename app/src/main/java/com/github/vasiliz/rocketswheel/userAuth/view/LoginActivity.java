@@ -36,7 +36,7 @@ public class LoginActivity extends RocketActivity implements UserAuthView {
     }
 
     public void startingActivity(){
-        startActivity(new Intent(this, WebForLoginView.class));
+        startActivity(new Intent(this, WebForLoginActivity.class));
     }
 
 }

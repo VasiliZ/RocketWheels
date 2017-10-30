@@ -1,13 +1,10 @@
 package com.github.vasiliz.rocketswheel.userAuth.presenter;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import com.github.vasiliz.rocketswheel.authServise.AuthUserCallback;
 import com.github.vasiliz.rocketswheel.userAuth.model.AuthModel;
 import com.github.vasiliz.rocketswheel.userAuth.view.LoginActivity;
 import com.github.vasiliz.rocketswheel.userAuth.view.UserAuthView;
-import com.github.vasiliz.rocketswheel.userAuth.view.WebForLoginView;
 import com.github.vasiliz.rokets.RocketPresenter;
 
 public class UserAuthPresenter extends RocketPresenter<UserAuthView> implements AuthUserCallback {
@@ -19,7 +16,6 @@ public class UserAuthPresenter extends RocketPresenter<UserAuthView> implements 
         mAuthModel = pAuthModel;
     }
 
-
     @Override
     public void handleErrorAction(@NonNull final Throwable pThrowable) {
         hideProgress();
@@ -29,7 +25,7 @@ public class UserAuthPresenter extends RocketPresenter<UserAuthView> implements 
     @Override
     public void toLogin() {
         mAuthModel.checkConnection();
-        mAuthModel.startAuthProcess(this);
+        // mAuthModel.startAuthProcess(this);
         mLoginActivity.startingActivity();
 
     }
@@ -37,5 +33,6 @@ public class UserAuthPresenter extends RocketPresenter<UserAuthView> implements 
     @Override
     public void attachView(@NonNull UserAuthView pView) {
         mLoginActivity = (LoginActivity) pView;
+        super.attachView(mLoginActivity);
     }
 }
