@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RocketsWheel</string>
+    <string name="login">LogIn</string>
 </resources>

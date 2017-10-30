@@ -6,10 +6,7 @@ import com.github.vasiliz.rocketswheel.authServise.AuthUserCallback;
 
 public interface IAuthModel {
 
+    void startAuthProcess(@NonNull AuthUserCallback pAuthUserCallback);
     boolean checkConnection();
-
-    void startAuthProcess(@NonNull AuthUserCallback pAuthUserCallback, @NonNull String pCredentials);
-
-    void authorize();
 
 }

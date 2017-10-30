@@ -6,8 +6,5 @@ public interface AuthUserCallback {
 
     void handleErrorAction(@NonNull Throwable pThrowable);
 
-    void onAuthorize();
-
-    void onCredentialsValidate();
-
+    void toLogin();
 }
