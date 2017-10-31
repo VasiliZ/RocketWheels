@@ -20,16 +20,15 @@ public class WebViewPresenter extends RocketPresenter<WebClientView>  {
     @Override
     public void attachView(@NonNull final WebClientView pView) {
         mWebForLoginView = (WebForLoginActivity) pView;
-        super.attachView(mWebForLoginView);
+
     }
 
     public void showContent() {
-    //    showProgress();
-     //   mWebViewModel.loadFriends(() -> mWebForLoginView.hideProgress());
+    //todo implements this method
     }
 
     public void parseUrl(final String pUrl) {
-        mWebForLoginView.showProgress();
+//        mWebForLoginView.showProgress();
         mWebViewModel.getToken(pUrl, pS -> {
             mWebForLoginView.hideProgress();
             System.out.println(pS);

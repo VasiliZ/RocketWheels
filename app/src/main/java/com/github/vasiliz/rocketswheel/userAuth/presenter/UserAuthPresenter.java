@@ -33,6 +33,5 @@ public class UserAuthPresenter extends RocketPresenter<UserAuthView> implements 
     @Override
     public void attachView(@NonNull UserAuthView pView) {
         mLoginActivity = (LoginActivity) pView;
-        super.attachView(mLoginActivity);
     }
 }
