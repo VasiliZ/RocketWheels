@@ -1,8 +1,8 @@
 package com.github.vasiliz.rocketswheel.userAuth.presenter;
 
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import com.github.vasiliz.rocketswheel.userAuth.model.CompliteCallBack;
 import com.github.vasiliz.rocketswheel.userAuth.model.WebViewModel;
 import com.github.vasiliz.rocketswheel.userAuth.view.WebClientView;
 import com.github.vasiliz.rocketswheel.userAuth.view.WebForLoginActivity;
@@ -28,12 +28,12 @@ public class WebViewPresenter extends RocketPresenter<WebClientView>  {
     }
 
     public void parseUrl(final String pUrl) {
-//        mWebForLoginView.showProgress();
+        mWebForLoginView.showProgress();
         mWebViewModel.getToken(pUrl, pS -> {
+            mWebForLoginView.saveToken(pS);
             mWebForLoginView.hideProgress();
-            System.out.println(pS);
-        });
 
+        });
     }
 
 
