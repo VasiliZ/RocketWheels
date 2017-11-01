@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RocketsWheel</string>
     <string name="login">LogIn</string>
+    <string name="wait">Please wait ...</string>
 </resources>

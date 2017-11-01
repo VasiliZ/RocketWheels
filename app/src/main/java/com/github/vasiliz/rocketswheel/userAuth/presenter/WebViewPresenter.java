@@ -1,6 +1,5 @@
 package com.github.vasiliz.rocketswheel.userAuth.presenter;
 
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import com.github.vasiliz.rocketswheel.userAuth.model.WebViewModel;
@@ -8,7 +7,7 @@ import com.github.vasiliz.rocketswheel.userAuth.view.WebClientView;
 import com.github.vasiliz.rocketswheel.userAuth.view.WebForLoginActivity;
 import com.github.vasiliz.rokets.RocketPresenter;
 
-public class WebViewPresenter extends RocketPresenter<WebClientView>  {
+public class WebViewPresenter extends RocketPresenter<WebClientView> implements WebViewPresenterContract  {
 
     private WebForLoginActivity mWebForLoginView;
     private final WebViewModel mWebViewModel;
@@ -22,11 +21,12 @@ public class WebViewPresenter extends RocketPresenter<WebClientView>  {
         mWebForLoginView = (WebForLoginActivity) pView;
 
     }
-
+    @Override
     public void showContent() {
     //todo implements this method
     }
 
+    @Override
     public void parseUrl(final String pUrl) {
         mWebForLoginView.showProgress();
         mWebViewModel.getToken(pUrl, pS -> {
