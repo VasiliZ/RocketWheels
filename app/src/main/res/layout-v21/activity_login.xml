@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.github.vasiliz.rocketswheel.userAuth.view.LoginActivity">
 
-
+    <!--TODO more friendly id-->
     <Button
         android:id="@+id/send_auth_data"
         android:layout_width="wrap_content"

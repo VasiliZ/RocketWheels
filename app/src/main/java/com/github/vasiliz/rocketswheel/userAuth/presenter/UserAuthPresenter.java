@@ -25,6 +25,7 @@ public class UserAuthPresenter extends RocketPresenter<UserAuthView> implements 
     @Override
     public void toLogin() {
         mAuthModel.checkConnection();
+        //        TODO UserAuthView.onLogin() and start activity inside
         // mAuthModel.startAuthProcess(this);
         mLoginActivity.startingActivity();
 
@@ -32,6 +33,7 @@ public class UserAuthPresenter extends RocketPresenter<UserAuthView> implements 
 
     @Override
     public void attachView(@NonNull UserAuthView pView) {
+        //        TODO Use interfase instead LoginActivity
         mLoginActivity = (LoginActivity) pView;
     }
 }
