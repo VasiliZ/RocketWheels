@@ -8,19 +8,18 @@ import android.view.View;
 
 import com.github.vasiliz.rocketswheel.R;
 import com.github.vasiliz.rocketswheel.userAuth.model.AuthModel;
-import com.github.vasiliz.rocketswheel.userAuth.presenter.UserAuthPresenter;
+import com.github.vasiliz.rocketswheel.userAuth.presenter.UserIAuthPresenter;
 import com.github.vasiliz.rokets.RocketActivity;
 import com.github.vasiliz.rokets.RocketPresenter;
 
 public class LoginActivity extends RocketActivity implements UserAuthView {
 
-    private UserAuthPresenter mUserAuthPresenter;
+    private UserIAuthPresenter mUserAuthPresenter;
 
     @Override
     public void onCreate(@NonNull final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.layout_activity_login);
     }
 
 
@@ -30,12 +29,13 @@ public class LoginActivity extends RocketActivity implements UserAuthView {
 
     @Override
     protected RocketPresenter injectPresenter(final Application pApplication) {
-        mUserAuthPresenter = new UserAuthPresenter(new AuthModel());
+        mUserAuthPresenter = new UserIAuthPresenter(new AuthModel());
         mUserAuthPresenter.attachView(this);
         return mUserAuthPresenter;
     }
 
-    public void startingActivity(){
+    @Override
+    public void onLogin() {
         startActivity(new Intent(this, WebForLoginActivity.class));
     }
 

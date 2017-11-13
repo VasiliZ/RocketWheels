@@ -2,4 +2,7 @@
     <string name="app_name">RocketsWheel</string>
     <string name="login">LogIn</string>
     <string name="wait">Please wait ...</string>
+    <string name="action_bar_news">Новости</string>
+    <string name="ether">Эфир</string>
+    <string name="record">Запись</string>
 </resources>

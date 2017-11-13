@@ -42,7 +42,7 @@ public class RobolectricTestLoginActivity {
 
         LoginActivity loginActivity = mLoginActivityActivityController.get();
 
-        boolean loginButtonIsEnabled = loginActivity.findViewById(R.id.send_auth_data).isEnabled();
+        boolean loginButtonIsEnabled = loginActivity.findViewById(R.id.button_view_activity_login).isEnabled();
         assertEquals(loginButtonIsEnabled, true);
     }
 }

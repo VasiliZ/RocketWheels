@@ -16,17 +16,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".userAuth.view.WebForLoginActivity"></activity>
-        <activity
-            android:name=".backend.BackendSample"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".userAuth.view.WebForLoginActivity"/>
+        <activity android:name=".userVkNews.view.UserVkNewsView"/>
         <activity android:name=".userAuth.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

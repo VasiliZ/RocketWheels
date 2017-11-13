@@ -3,6 +3,7 @@ package com.github.vasiliz.rocketswheel.userAuth.view;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,21 +11,23 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.vasiliz.rocketswheel.R;
+import com.github.vasiliz.rocketswheel.commons.ApiConstantsUrl;
 import com.github.vasiliz.rocketswheel.userAuth.model.WebViewModel;
 import com.github.vasiliz.rocketswheel.userAuth.presenter.WebViewPresenter;
+import com.github.vasiliz.rocketswheel.userVkNews.view.UserVkNewsView;
 import com.github.vasiliz.rokets.RocketActivity;
 import com.github.vasiliz.rokets.RocketPresenter;
 
-import static android.content.SharedPreferences.*;
+import static android.content.SharedPreferences.Editor;
 
-public class WebForLoginActivity extends RocketActivity implements WebClientView {
+public class WebForLoginActivity extends RocketActivity implements IWebClientView {
 
     private WebViewPresenter mWebViewPresenter;
     private ProgressDialog mProgressDialog;
     private SharedPreferences mSharedPreferences;
     private static final String APP_PREFERENCES = "mySettings";
     private static final String APP_TOKEN_NAME = "vkToken";
-    private static final String URL = "https://oauth.vk.com/authorize?client_id=6218232&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=wall,friends,offline&response_type=token&v=5.68&state=123456";
+    private static final String URL = ApiConstantsUrl.URL_AUTH;
 
     @Override
     protected RocketPresenter injectPresenter(final Application pApplication) {
@@ -36,14 +39,14 @@ public class WebForLoginActivity extends RocketActivity implements WebClientView
     @Override
     public void onCreate(@Nullable final Bundle pSavedInstanceState) {
         super.onCreate(pSavedInstanceState);
-        setContentView(R.layout.web_view_for_login);
-        mSharedPreferences = getSharedPreferences(APP_PREFERENCES,MODE_PRIVATE);
+        setContentView(R.layout.layout_web_view_login);
+        mSharedPreferences = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         init();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     public void init() {
-        final WebView webView = findViewById(R.id.wv_for_login);
+        final WebView webView = findViewById(R.id.web_view_login);
         webView.loadUrl(URL);
         webView.getSettings().setJavaScriptEnabled(true);
         final CustomWebViewClient customWebViewClient = new CustomWebViewClient();
@@ -55,7 +58,7 @@ public class WebForLoginActivity extends RocketActivity implements WebClientView
         @Override
         public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
 
-            if (url.contains("https://oauth.vk.com/blank.html#access_token=")) {
+            if (url.contains(ApiConstantsUrl.URL_GET_ACCESS_TOKEN)) {
                 mWebViewPresenter.parseUrl(url);
             }
             return false;
@@ -77,11 +80,17 @@ public class WebForLoginActivity extends RocketActivity implements WebClientView
     }
 
     @Override
-    public void saveToken(final String pToken){
+    public void saveToken(final String pToken) {
         final Editor editor = mSharedPreferences.edit();
         editor.putString(APP_TOKEN_NAME, pToken);
         System.out.println(pToken);
         editor.apply();
+    }
+
+    @Override
+    public void afterCheckCredentials() {
+        startActivity(new Intent(this, UserVkNewsView.class));
+
     }
 
 }

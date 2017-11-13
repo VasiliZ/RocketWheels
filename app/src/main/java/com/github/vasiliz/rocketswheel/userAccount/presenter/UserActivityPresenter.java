@@ -1,10 +1,10 @@
 package com.github.vasiliz.rocketswheel.userAccount.presenter;
 
 import com.github.vasiliz.rocketswheel.userAccount.model.UserModel;
-import com.github.vasiliz.rocketswheel.userAccount.view.UserAccountView;
+import com.github.vasiliz.rocketswheel.userAccount.view.IUserAccountView;
 import com.github.vasiliz.rokets.RocketPresenter;
 
-public class UserActivityPresenter extends RocketPresenter<UserAccountView> {
+public class UserActivityPresenter extends RocketPresenter<IUserAccountView> {
 
     public UserActivityPresenter(final UserModel pUserModel) {
 

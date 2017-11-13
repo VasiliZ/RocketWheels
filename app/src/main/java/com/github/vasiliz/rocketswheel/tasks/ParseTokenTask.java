@@ -3,26 +3,21 @@ package com.github.vasiliz.rocketswheel.tasks;
 import android.net.Uri;
 import android.os.AsyncTask;
 
-import com.github.vasiliz.rocketswheel.userAuth.model.CompliteCallBack;
+import com.github.vasiliz.rocketswheel.userAuth.model.ICompliteCallBack;
 
 import java.util.concurrent.TimeUnit;
 
 public class ParseTokenTask extends AsyncTask<String, Void, String> {
 
-    private CompliteCallBack mCompliteCallBack;
+    private ICompliteCallBack mICompliteCallBack;
 
-    public ParseTokenTask(final CompliteCallBack pCompliteCallBack) {
-        mCompliteCallBack = pCompliteCallBack;
+    public ParseTokenTask(final ICompliteCallBack pICompliteCallBack) {
+        mICompliteCallBack = pICompliteCallBack;
     }
 
     @Override
     protected String doInBackground(final String... pStrings) {
 
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException pE) {
-            pE.printStackTrace();
-        }
         String url = pStrings[0];
         Uri uri = Uri.parse(url);
 
@@ -43,8 +38,8 @@ public class ParseTokenTask extends AsyncTask<String, Void, String> {
 
     protected void onPostExecute(final String pS) {
         super.onPostExecute(pS);
-        if (mCompliteCallBack!=null){
-            mCompliteCallBack.onParse(pS);
+        if (mICompliteCallBack !=null){
+            mICompliteCallBack.onParse(pS);
         }
     }
 }

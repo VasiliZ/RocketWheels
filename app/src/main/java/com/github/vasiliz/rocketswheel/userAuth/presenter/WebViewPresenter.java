@@ -3,13 +3,13 @@ package com.github.vasiliz.rocketswheel.userAuth.presenter;
 import android.support.annotation.NonNull;
 
 import com.github.vasiliz.rocketswheel.userAuth.model.WebViewModel;
-import com.github.vasiliz.rocketswheel.userAuth.view.WebClientView;
+import com.github.vasiliz.rocketswheel.userAuth.view.IWebClientView;
 import com.github.vasiliz.rocketswheel.userAuth.view.WebForLoginActivity;
 import com.github.vasiliz.rokets.RocketPresenter;
 
-public class WebViewPresenter extends RocketPresenter<WebClientView> implements WebViewPresenterContract  {
+public class WebViewPresenter extends RocketPresenter<IWebClientView> implements IWebViewPresenterContract {
 
-    private WebForLoginActivity mWebForLoginView;
+    private IWebClientView mWebForLoginView;
     private final WebViewModel mWebViewModel;
 
     public WebViewPresenter(final WebViewModel pWebViewModel) {
@@ -17,8 +17,8 @@ public class WebViewPresenter extends RocketPresenter<WebClientView> implements 
     }
 
     @Override
-    public void attachView(@NonNull final WebClientView pView) {
-        mWebForLoginView = (WebForLoginActivity) pView;
+    public void attachView(@NonNull final IWebClientView pView) {
+        mWebForLoginView =  pView;
 
     }
     @Override
@@ -32,6 +32,7 @@ public class WebViewPresenter extends RocketPresenter<WebClientView> implements 
         mWebViewModel.getToken(pUrl, pS -> {
             mWebForLoginView.saveToken(pS);
             mWebForLoginView.hideProgress();
+            mWebForLoginView.afterCheckCredentials();
 
         });
     }
