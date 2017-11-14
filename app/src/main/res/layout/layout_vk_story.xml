@@ -16,7 +16,7 @@
             android:layout_gravity="center_horizontal"
             android:padding="16dp"
             android:background="@drawable/circled_image_view"
-            android:src="@drawable/botom_menu_item"/>
+            android:src="@drawable/bottom_menu_item"/>
         <TextView
             android:text="История"
             android:layout_width="wrap_content"

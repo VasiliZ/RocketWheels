@@ -19,7 +19,7 @@ public class Group {
         mGid = pGid;
     }
 
-    public String getName() {
+    public String getGroupName() {
         return mName;
     }
 
