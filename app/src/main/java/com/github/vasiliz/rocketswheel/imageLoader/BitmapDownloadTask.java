@@ -8,10 +8,13 @@ import java.lang.ref.WeakReference;
 
 public class BitmapDownloadTask extends AsyncTask<String, Void, Bitmap> {
 
-    private final WeakReference<ImageView> mImageViewWeakReference;
+    //private final WeakReference<OnDownloadBitmapListener> mImageViewWeakReference;
+    private final OnDownloadBitmapListener mOnDownloadBitmapListener;
 
-    public BitmapDownloadTask(final ImageView pImageView) {
-        mImageViewWeakReference = new WeakReference<>(pImageView);
+    public BitmapDownloadTask(final OnDownloadBitmapListener pOnDownloadBitmapListener) {
+        //mImageViewWeakReference = new WeakReference<>(pOnDownloadBitmapListener);
+        mOnDownloadBitmapListener = pOnDownloadBitmapListener;
+
     }
 
     @Override
@@ -25,11 +28,9 @@ public class BitmapDownloadTask extends AsyncTask<String, Void, Bitmap> {
             pBitmap = null;
         }
 
-        if (mImageViewWeakReference != null) {
-            ImageView imageView = mImageViewWeakReference.get();
-            if (imageView != null) {
-                imageView.setImageBitmap(pBitmap);
-            }
+        if (mOnDownloadBitmapListener != null) {
+            mOnDownloadBitmapListener.setBitmap(pBitmap);
         }
     }
+
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Response {
     @SerializedName("items")
-    private List<Items> mItems;
+    private List<Item> mItems;
     @SerializedName("profiles")
     private List<Profiles> mProfiles;
     @SerializedName("groups")
@@ -15,11 +15,11 @@ public class Response {
     public Response() {
     }
 
-    public List<Items> getItems() {
+    public List<Item> getItems() {
         return mItems;
     }
 
-    public void setItems(final List<Items> pItems) {
+    public void setItems(final List<Item> pItems) {
         mItems = pItems;
     }
 

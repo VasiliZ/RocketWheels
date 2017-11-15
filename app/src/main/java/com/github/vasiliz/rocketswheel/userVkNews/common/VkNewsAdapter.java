@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.vasiliz.rocketswheel.R;
-import com.github.vasiliz.rocketswheel.commons.ViewHolder;
 import com.github.vasiliz.rocketswheel.imageLoader.Downloader;
 import com.github.vasiliz.rocketswheel.json.vkNewsModel.Group;
+import com.github.vasiliz.rocketswheel.userVkNews.common.contentNewsHolders.ViewTitleNewsHolder;
 
 import java.util.List;
 
-public class VkNewsAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class VkNewsAdapter extends RecyclerView.Adapter<ViewTitleNewsHolder> {
 
     private LayoutInflater mLayoutInflater;
     private List<Group> mGroups;
@@ -26,17 +26,17 @@ public class VkNewsAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.layout_block_news, parent, false);
-        return new ViewHolder(view);
+    public ViewTitleNewsHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
+        View view = mLayoutInflater.inflate(R.layout.layout_activity_login, parent, false);
+        return new ViewTitleNewsHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewTitleNewsHolder holder, final int position) {
 
         final Group group = mGroups.get(position);
         holder.setContentTextImage(group.getGroupName());
-        mDownloader.downloadImage(group.getGroupPhoto(), holder.getContentImage());
+        //mDownloader.downloadImage(group.getGroupPhoto(), holder.getContentImage());
     }
 
     @Override

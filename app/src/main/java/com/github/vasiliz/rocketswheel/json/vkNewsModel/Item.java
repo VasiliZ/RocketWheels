@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Items {
+public class Item {
 
     @SerializedName("type")
     private String type;
@@ -23,7 +23,7 @@ public class Items {
     @SerializedName("attachments")
     private List<Attachments> mAttachments;
 
-    public Items(final String pType, final int pSouseId, final long pDate, final int pPostId, final String pPostType, final String pText, final Attachment pAttachment, final List<Attachments> pAttachments) {
+    public Item(final String pType, final int pSouseId, final long pDate, final int pPostId, final String pPostType, final String pText, final Attachment pAttachment, final List<Attachments> pAttachments) {
         type = pType;
         souseId = pSouseId;
         date = pDate;

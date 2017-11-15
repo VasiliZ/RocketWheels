@@ -1,12 +1,21 @@
 package com.github.vasiliz.rocketswheel.imageLoader;
 
-import android.widget.ImageView;
+import android.graphics.Bitmap;
+
+import java.util.concurrent.ExecutionException;
 
 public class Downloader {
 
-        public void downloadImage(String url, ImageView pImageView){
-            BitmapDownloadTask bitmapDownloadTask = new BitmapDownloadTask(pImageView);
-            bitmapDownloadTask.execute(url);
+        public Bitmap downloadImage(final String pUrl, final OnDownloadBitmapListener pOnDownloadBitmapListener){
+            final BitmapDownloadTask bitmapDownloadTask = new BitmapDownloadTask(pOnDownloadBitmapListener);
+            try {
+                return bitmapDownloadTask.execute(pUrl).get();
+            } catch (InterruptedException pE) {
+                pE.printStackTrace();
+            } catch (ExecutionException pE) {
+                pE.printStackTrace();
+            }
+            return null;
         }
 
 }

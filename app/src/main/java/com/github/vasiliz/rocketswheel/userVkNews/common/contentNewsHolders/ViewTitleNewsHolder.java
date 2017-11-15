@@ -1,4 +1,4 @@
-package com.github.vasiliz.rocketswheel.commons;
+package com.github.vasiliz.rocketswheel.userVkNews.common.contentNewsHolders;
 
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
@@ -8,12 +8,12 @@ import android.widget.TextView;
 
 import com.github.vasiliz.rocketswheel.R;
 
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewTitleNewsHolder extends RecyclerView.ViewHolder {
 
     private TextView mContentTextImage;
     private ImageView mContentImage;
 
-    public ViewHolder(final View itemView) {
+    public ViewTitleNewsHolder(final View itemView) {
         super(itemView);
 
         mContentImage = itemView.findViewById(R.id.photo_news_image_view);

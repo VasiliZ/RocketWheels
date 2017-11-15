@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import com.github.vasiliz.rocketswheel.R;
 import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
 import com.github.vasiliz.rocketswheel.userVkNews.common.VkNewsAdapter;
+import com.github.vasiliz.rocketswheel.userVkNews.common.VkNewsCustomAdapter;
 import com.github.vasiliz.rocketswheel.userVkNews.model.UserVkNewsModel;
 import com.github.vasiliz.rocketswheel.userVkNews.presenter.UserVkNewsPresenter;
 import com.github.vasiliz.rokets.RocketActivity;
@@ -23,11 +24,14 @@ public class UserVkNewsView extends RocketActivity implements IUserVkNewsView {
 
     @Override
     public void setDataNews(final ParseNews pParseNews) {
-       LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+       // VkNewsAdapter vkNewsAdapter = new VkNewsAdapter(this, pParseNews.getResponse().getGroups());
+        final VkNewsCustomAdapter vkNewsCustomAdapter = new VkNewsCustomAdapter(this, pParseNews);
+        //vkNewsCustomAdapter.setHasStableIds(true);
+        layoutManager.canScrollVertically();
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        VkNewsAdapter vkNewsAdapter = new VkNewsAdapter(this, pParseNews.getResponse().getGroups());
         mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(vkNewsAdapter);
+        mRecyclerView.setAdapter(vkNewsCustomAdapter);
     }
 
     @Override
