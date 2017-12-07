@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+@Deprecated
 public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     private final OnLoadImageListener mOnLoadImageListener;

@@ -4,12 +4,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class Group {
 
-    @SerializedName("gid")
+    @SerializedName("id")
     private int mGid;
     @SerializedName("name")
     private String mName;
-    @SerializedName("photo")
-    private String mGroupPhoto;
+    @SerializedName("photo_50")
+    private String mPhotoGroup;
+
+    public Group() {
+    }
 
     public int getGid() {
         return mGid;
@@ -27,11 +30,15 @@ public class Group {
         mName = pName;
     }
 
-    public String getGroupPhoto() {
-        return mGroupPhoto;
+    public String getPhotoGroup() {
+        return mPhotoGroup;
     }
 
-    public void setGroupPhoto(final String pGroupPhoto) {
-        mGroupPhoto = pGroupPhoto;
+    public void setPhotoGroup(final String pPhotoGroup) {
+        mPhotoGroup = pPhotoGroup;
+    }
+
+    public String getName() {
+        return mName;
     }
 }

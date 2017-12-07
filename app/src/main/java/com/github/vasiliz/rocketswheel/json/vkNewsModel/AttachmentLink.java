@@ -10,7 +10,7 @@ public class AttachmentLink {
     private String mTitle;
     @SerializedName("description")
     private String mDesc;
-    @SerializedName("image_src")
+    @SerializedName("photo_604")
     private String mImageSrcLink;
 
     public void setLink(final String pLink) {
@@ -27,5 +27,21 @@ public class AttachmentLink {
 
     public void setImageSrcLink(final String pImageSrcLink) {
         mImageSrcLink = pImageSrcLink;
+    }
+
+    public String getLink() {
+        return mLink;
+    }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public String getDesc() {
+        return mDesc;
+    }
+
+    public String getImageSrcLink() {
+        return mImageSrcLink;
     }
 }

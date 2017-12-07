@@ -4,7 +4,7 @@ import com.github.vasiliz.rocketswheel.json.vkNewsModel.Item;
 import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
 
 import java.util.List;
-
+@Deprecated
 public class NewsManager {
 
     private ParseNews mParseNews;

@@ -3,16 +3,16 @@
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        >
+        android:gravity="center_horizontal">
         <ImageView
-            android:src = "@drawable/pen_user_action_menu"
+            app:srcCompat = "@drawable/pen_user_action_menu"
             android:layout_margin="4dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -33,7 +33,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@drawable/ic_adjust_black_24dp"
+            app:srcCompat="@drawable/ic_adjust_black_24dp"
             style="@style/NewsViewTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

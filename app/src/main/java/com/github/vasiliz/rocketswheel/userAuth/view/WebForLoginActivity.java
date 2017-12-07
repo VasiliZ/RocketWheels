@@ -11,7 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.github.vasiliz.rocketswheel.R;
-import com.github.vasiliz.rocketswheel.commons.ApiConstantsUrl;
+import com.github.vasiliz.rocketswheel.commons.ConstantsStrings;
 import com.github.vasiliz.rocketswheel.userAuth.model.WebViewModel;
 import com.github.vasiliz.rocketswheel.userAuth.presenter.WebViewPresenter;
 import com.github.vasiliz.rocketswheel.userVkNews.view.UserVkNewsView;
@@ -25,9 +25,7 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
     private WebViewPresenter mWebViewPresenter;
     private ProgressDialog mProgressDialog;
     private SharedPreferences mSharedPreferences;
-    private static final String APP_PREFERENCES = "mySettings";
-    private static final String APP_TOKEN_NAME = "vkToken";
-    private static final String URL = ApiConstantsUrl.URL_AUTH;
+    private static final String URL = ConstantsStrings.URL_AUTH;
 
     @Override
     protected RocketPresenter injectPresenter(final Application pApplication) {
@@ -40,17 +38,25 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
     public void onCreate(@Nullable final Bundle pSavedInstanceState) {
         super.onCreate(pSavedInstanceState);
         setContentView(R.layout.layout_web_view_login);
-        mSharedPreferences = getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        init();
+        if (!checkAuth()) {
+            afterCheckCredentials();
+        } else {
+            init();
+        }
+        mSharedPreferences = getSharedPreferences(ConstantsStrings.APP_PREFERENCES, MODE_PRIVATE);
+
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     public void init() {
-        final WebView webView = findViewById(R.id.web_view_login);
-        webView.loadUrl(URL);
-        webView.getSettings().setJavaScriptEnabled(true);
-        final CustomWebViewClient customWebViewClient = new CustomWebViewClient();
-        webView.setWebViewClient(customWebViewClient);
+
+
+            final WebView webView = findViewById(R.id.web_view_login);
+            webView.loadUrl(URL);
+            webView.getSettings().setJavaScriptEnabled(true);
+            final CustomWebViewClient customWebViewClient = new CustomWebViewClient();
+            webView.setWebViewClient(customWebViewClient);
+
     }
 
     public class CustomWebViewClient extends WebViewClient {
@@ -58,7 +64,7 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
         @Override
         public boolean shouldOverrideUrlLoading(final WebView view, final String url) {
 
-            if (url.contains(ApiConstantsUrl.URL_GET_ACCESS_TOKEN)) {
+            if (url.contains(ConstantsStrings.URL_GET_ACCESS_TOKEN)) {
                 mWebViewPresenter.parseUrl(url);
             }
             return false;
@@ -82,7 +88,7 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
     @Override
     public void saveToken(final String pToken) {
         final Editor editor = mSharedPreferences.edit();
-        editor.putString(APP_TOKEN_NAME, pToken);
+        editor.putString(ConstantsStrings.APP_TOKEN_NAME, pToken);
         System.out.println(pToken);
         editor.apply();
     }
@@ -90,7 +96,15 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
     @Override
     public void afterCheckCredentials() {
         startActivity(new Intent(this, UserVkNewsView.class));
+    }
 
+    public boolean checkAuth(){
+        final SharedPreferences sharedPreferences = getSharedPreferences(ConstantsStrings.APP_PREFERENCES, MODE_PRIVATE);
+        if (sharedPreferences.getString(ConstantsStrings.APP_TOKEN_NAME, "")!=null) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

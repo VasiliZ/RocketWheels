@@ -1,0 +1,15 @@
+package com.github.vasiliz.rocketswheel.imagesLoader.streams;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class HttpInputStreamProvider implements IStreamContract<String> {
+
+    public InputStream get(String pUrl) throws IOException {
+        HttpURLConnection urlConnection = (HttpURLConnection) (new URL(pUrl)).openConnection();
+        return urlConnection.getInputStream();
+    }
+
+}

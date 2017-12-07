@@ -2,24 +2,27 @@ package com.github.vasiliz.rocketswheel.imageLoader;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
-
-import java.lang.ref.WeakReference;
 
 public class BitmapDownloadTask extends AsyncTask<String, Void, Bitmap> {
 
-    //private final WeakReference<OnDownloadBitmapListener> mImageViewWeakReference;
     private final OnDownloadBitmapListener mOnDownloadBitmapListener;
+    private String path;
+
 
     public BitmapDownloadTask(final OnDownloadBitmapListener pOnDownloadBitmapListener) {
-        //mImageViewWeakReference = new WeakReference<>(pOnDownloadBitmapListener);
+
         mOnDownloadBitmapListener = pOnDownloadBitmapListener;
 
     }
 
     @Override
     protected Bitmap doInBackground(final String... pStrings) {
-        return new DownloadBitmap().downloadBitmap(pStrings[0]);
+        path = pStrings[0];
+
+        return new DownloadBitmap().downloadBitmap(path);
     }
 
     @Override
@@ -28,8 +31,10 @@ public class BitmapDownloadTask extends AsyncTask<String, Void, Bitmap> {
             pBitmap = null;
         }
 
-        if (mOnDownloadBitmapListener != null) {
+        if (mOnDownloadBitmapListener != null){
             mOnDownloadBitmapListener.setBitmap(pBitmap);
+        }else{
+            Log.d("TAG", "no image");
         }
     }
 

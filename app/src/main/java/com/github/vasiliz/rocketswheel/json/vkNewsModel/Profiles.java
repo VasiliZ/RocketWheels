@@ -3,13 +3,14 @@ package com.github.vasiliz.rocketswheel.json.vkNewsModel;
 import com.google.gson.annotations.SerializedName;
 
 public class Profiles {
-    @SerializedName("uid")
+
+    @SerializedName("id")
     private int mUid;
     @SerializedName("first_name")
     private String mFirstName;
     @SerializedName("last_name")
     private String mLastName;
-    @SerializedName("photo")
+    @SerializedName("photo_50")
     private String mUserPhoto;
     @SerializedName("photo_medium_rec")
     private String mBigUserPhoto;
@@ -53,4 +54,5 @@ public class Profiles {
     public void setBigUserPhoto(final String pBigUserPhoto) {
         mBigUserPhoto = pBigUserPhoto;
     }
+
 }

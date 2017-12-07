@@ -17,14 +17,18 @@ public class DownloadBitmap {
     public Bitmap downloadBitmap(final String url) {
 
         try (InputStream inputStream = new URL(url).openStream()) {
-            Log.d(TAG, "downloadImage" + url);
+            mBitmap = null;
+            Log.d(TAG, " downloadImage" + url);
             mBitmap = BitmapFactory.decodeStream(inputStream);
             return mBitmap;
         } catch (MalformedURLException pE) {
             pE.printStackTrace();
         } catch (IOException pE) {
             pE.printStackTrace();
+        } catch (NullPointerException pE){
+            Log.d("lol", "ну бывает");
         }
+
         return null;
     }
 

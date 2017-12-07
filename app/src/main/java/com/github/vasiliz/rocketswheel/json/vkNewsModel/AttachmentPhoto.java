@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class AttachmentPhoto {
 
-    @SerializedName("pid")
+    @SerializedName("id")
     private int mInt;
     @SerializedName("owner_id")
     private int mOwnerId;
-    @SerializedName("src")
+    @SerializedName("photo_604")
     private String mSrc;
     @SerializedName("text")
     private String mPhotoText;
@@ -44,4 +44,5 @@ public class AttachmentPhoto {
     public void setPhotoText(final String pPhotoText) {
         mPhotoText = pPhotoText;
     }
+
 }

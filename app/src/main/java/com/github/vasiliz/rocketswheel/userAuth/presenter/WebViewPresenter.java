@@ -21,10 +21,6 @@ public class WebViewPresenter extends RocketPresenter<IWebClientView> implements
         mWebForLoginView =  pView;
 
     }
-    @Override
-    public void showContent() {
-    //todo implements this method
-    }
 
     @Override
     public void parseUrl(final String pUrl) {

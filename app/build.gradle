@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
 
     testOptions {
@@ -55,6 +56,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
     compile 'com.android.support:recyclerview-v7:26.1.0'
+
 }
 
 repositories {

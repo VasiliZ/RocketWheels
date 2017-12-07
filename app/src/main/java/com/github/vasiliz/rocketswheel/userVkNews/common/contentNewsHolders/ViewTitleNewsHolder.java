@@ -1,13 +1,12 @@
 package com.github.vasiliz.rocketswheel.userVkNews.common.contentNewsHolders;
 
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.vasiliz.rocketswheel.R;
-
+@Deprecated
 public class ViewTitleNewsHolder extends RecyclerView.ViewHolder {
 
     private TextView mContentTextImage;

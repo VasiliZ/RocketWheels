@@ -10,7 +10,7 @@ public class AttachmentVideo {
     private String mTitle;
     @SerializedName("duration")
     private int mDuration;
-    @SerializedName("image")
+    @SerializedName("photo_800")
     private String mImageVideo;
 
     public int getOwnerId() {

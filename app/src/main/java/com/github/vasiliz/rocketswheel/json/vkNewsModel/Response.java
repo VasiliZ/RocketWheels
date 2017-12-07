@@ -5,15 +5,28 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Response {
+
     @SerializedName("items")
     private List<Item> mItems;
     @SerializedName("profiles")
     private List<Profiles> mProfiles;
     @SerializedName("groups")
     private List<Group> mGroups;
+    @SerializedName("next_from")
+    private String mNextScopeNews;
+
 
     public Response() {
     }
+
+    public String getNextScopeNews() {
+        return mNextScopeNews;
+    }
+
+    public void setNextScopeNews(final String pNextScopeNews) {
+        mNextScopeNews = pNextScopeNews;
+    }
+
 
     public List<Item> getItems() {
         return mItems;

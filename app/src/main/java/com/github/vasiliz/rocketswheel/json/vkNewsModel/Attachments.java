@@ -14,6 +14,8 @@ public class Attachments {
     private AttachmentAudio mAttachmentAudio;
     @SerializedName("doc")
     private AttachmentDoc mAttachmentDoc;
+    @SerializedName("video")
+    private AttachmentVideo mAttachmentVideo;
 
     public String getType() {
         return mType;
@@ -53,5 +55,13 @@ public class Attachments {
 
     public void setAttachmentDoc(final AttachmentDoc pAttachmentDoc) {
         mAttachmentDoc = pAttachmentDoc;
+    }
+
+    public AttachmentVideo getAttachmentVideo() {
+        return mAttachmentVideo;
+    }
+
+    public void setAttachmentVideo(final AttachmentVideo pAttachmentVideo) {
+        mAttachmentVideo = pAttachmentVideo;
     }
 }

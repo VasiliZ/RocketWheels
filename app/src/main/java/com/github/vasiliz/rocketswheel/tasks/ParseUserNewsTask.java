@@ -8,9 +8,8 @@ import com.github.vasiliz.rocketswheel.userVkNews.common.ParseCallBack;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.IOException;
-
-public class ParseUserNewsTask extends AsyncTask<String, Void, ParseNews> {
+public class
+ParseUserNewsTask extends AsyncTask<String, Void, ParseNews> {
 
     private ParseCallBack mICompliteCallBack;
     private ParseNews mParseNews;
@@ -25,11 +24,7 @@ public class ParseUserNewsTask extends AsyncTask<String, Void, ParseNews> {
         mHttpService = new HttpService();
         String sourse = pStrings[0];
         final Gson gson = new GsonBuilder().create();
-        try {
-            mParseNews = gson.fromJson(mHttpService.request(sourse), ParseNews.class);
-        } catch (IOException pE) {
-            pE.printStackTrace();
-        }
+        mParseNews = gson.fromJson(mHttpService.request(sourse), ParseNews.class);
         return mParseNews;
     }
 
@@ -39,6 +34,7 @@ public class ParseUserNewsTask extends AsyncTask<String, Void, ParseNews> {
 
         if (mICompliteCallBack != null) {
             mICompliteCallBack.isParsed(pParseNews);
+
         }
     }
 }

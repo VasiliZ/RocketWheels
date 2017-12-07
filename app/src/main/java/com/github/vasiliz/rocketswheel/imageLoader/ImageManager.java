@@ -1,28 +1,24 @@
 package com.github.vasiliz.rocketswheel.imageLoader;
 
 import android.graphics.Bitmap;
+import android.widget.ImageView;
 
 import java.util.concurrent.ExecutionException;
 
 public class ImageManager {
 
-    private int mMemory = 1024 * 1024 / 8;
-    private ImageCache mImageCache = new ImageCache(mMemory);
-    private Downloader mDownloader;
+    private Downloader mDownloader = new Downloader();
     private Bitmap mBitmap;
-    private OnDownloadBitmapListener mOnDownloadBitmapListener;
 
-    public Bitmap getBitmap(final String pUrl) throws ExecutionException, InterruptedException {
+    public void getBitmap(final String pUrl, final ImageView pImageView) throws ExecutionException, InterruptedException {
 
-        if (mImageCache.getImageFromMemory(pUrl) == null) {
-            mDownloader = new Downloader();
-            mBitmap = mDownloader.downloadImage(pUrl, mOnDownloadBitmapListener);
-            mImageCache.setBitmap(pUrl, mBitmap);
-            return mBitmap;
-        } else {
-            return mImageCache.getImageFromMemory(pUrl);
-        }
 
+        mDownloader.downloadImage(pUrl, new OnDownloadBitmapListener() {
+
+            @Override
+            public void setBitmap(final Bitmap pBitmap) {
+                pImageView.setImageBitmap(pBitmap);
+            }
+        });
     }
-
 }

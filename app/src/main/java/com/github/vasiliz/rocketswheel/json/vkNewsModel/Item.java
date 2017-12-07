@@ -18,20 +18,16 @@ public class Item {
     private String postType;
     @SerializedName("text")
     private String text;
-    @SerializedName("attachment")
-    private Attachment mAttachment;
     @SerializedName("attachments")
     private List<Attachments> mAttachments;
+    @SerializedName("comments")
+    private Comment mComment;
+    @SerializedName("likes")
+    private Like mLike;
+    @SerializedName("reposts")
+    private Repost mRepost;
 
-    public Item(final String pType, final int pSouseId, final long pDate, final int pPostId, final String pPostType, final String pText, final Attachment pAttachment, final List<Attachments> pAttachments) {
-        type = pType;
-        souseId = pSouseId;
-        date = pDate;
-        postId = pPostId;
-        postType = pPostType;
-        text = pText;
-        mAttachment = pAttachment;
-        mAttachments = pAttachments;
+    public Item() {
     }
 
     public String getType() {
@@ -82,19 +78,35 @@ public class Item {
         text = pText;
     }
 
-    public Attachment getAttachment() {
-        return mAttachment;
-    }
-
-    public void setAttachment(final Attachment pAttachment) {
-        mAttachment = pAttachment;
-    }
-
     public List<Attachments> getAttachments() {
         return mAttachments;
     }
 
     public void setAttachments(final List<Attachments> pAttachments) {
         mAttachments = pAttachments;
+    }
+
+    public Comment getComment() {
+        return mComment;
+    }
+
+    public void setComment(final Comment pComment) {
+        mComment = pComment;
+    }
+
+    public Like getLike() {
+        return mLike;
+    }
+
+    public void setLike(final Like pLike) {
+        mLike = pLike;
+    }
+
+    public Repost getRepost() {
+        return mRepost;
+    }
+
+    public void setRepost(final Repost pRepost) {
+        mRepost = pRepost;
     }
 }

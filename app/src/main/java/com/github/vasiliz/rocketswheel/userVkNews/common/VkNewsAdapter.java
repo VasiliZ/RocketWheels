@@ -12,7 +12,7 @@ import com.github.vasiliz.rocketswheel.json.vkNewsModel.Group;
 import com.github.vasiliz.rocketswheel.userVkNews.common.contentNewsHolders.ViewTitleNewsHolder;
 
 import java.util.List;
-
+@Deprecated
 public class VkNewsAdapter extends RecyclerView.Adapter<ViewTitleNewsHolder> {
 
     private LayoutInflater mLayoutInflater;
@@ -36,7 +36,7 @@ public class VkNewsAdapter extends RecyclerView.Adapter<ViewTitleNewsHolder> {
 
         final Group group = mGroups.get(position);
         holder.setContentTextImage(group.getGroupName());
-        //mDownloader.downloadImage(group.getGroupPhoto(), holder.getContentImage());
+        //mDownloader.downloadImage(group.getPhotoGroup(), holder.getContentImage());
     }
 
     @Override

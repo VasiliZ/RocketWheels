@@ -15,7 +15,7 @@ public class HttpService implements IHttpCallBack {
     private StringBuffer mStringBuffer;
 
     @Override
-    public String request(final String pRequest) throws IOException {
+    public String request(final String pRequest) {
         try {
             final URL url = new URL(pRequest);
             final HttpsURLConnection URLConnection = (HttpsURLConnection) url.openConnection();

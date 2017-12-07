@@ -1,7 +1,6 @@
 package com.github.vasiliz.rocketswheel.imageLoader;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
@@ -18,12 +17,12 @@ public class ImageCache extends LruCache<String, Bitmap> {
         super(maxSize);
     }
 
-    public Bitmap getImageFromMemory(String url) {
+    public Bitmap getImageFromMemory(final String url) {
         Log.d(TAG, "getBitmap " + url);
         return this.get(url);
     }
 
-    public void setBitmap(String url, Bitmap pImage){
+    public void setBitmap(final String url, final Bitmap pImage){
         if (getImageFromMemory(url) == null){
             this.put(url, pImage);
             Log.d(TAG, "setBitmap: " + url);

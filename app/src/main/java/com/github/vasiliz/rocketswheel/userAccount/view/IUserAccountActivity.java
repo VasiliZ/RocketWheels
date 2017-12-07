@@ -20,7 +20,7 @@ public class IUserAccountActivity extends RocketActivity implements IUserAccount
       //  setContentView(R.layout.activity_user); todo implenemts for user profile activity
     }
 
-    public void showMessage(final View view) {
+    public void showMessage(final View pView) {
         mUserActivityPresenter.logoutClicked();
     }
 
