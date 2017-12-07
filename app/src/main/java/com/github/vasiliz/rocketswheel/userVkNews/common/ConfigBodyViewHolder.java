@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,10 @@ public class ConfigBodyViewHolder {
     private final List<Group> mGroups;
     private final List<Profiles> mProfiles;
     private Context mContext;
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     public ConfigBodyViewHolder(final ContentBodyViewHolder pContentBodyViewHolder, final int pPosition, final Item pItem, final List<Group> pGroups, final List<Profiles> pProfiles, final Context pContext) {
         mContentBodyViewHolder = pContentBodyViewHolder;

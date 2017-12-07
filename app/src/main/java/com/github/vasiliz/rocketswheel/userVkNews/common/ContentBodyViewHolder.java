@@ -1,5 +1,6 @@
 package com.github.vasiliz.rocketswheel.userVkNews.common;
 
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,6 +40,10 @@ public class ContentBodyViewHolder extends RecyclerView.ViewHolder {
     private TextView mCountLike;
     private TextView mCountComment;
     private TextView mCountRepost;
+
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
 
     public ContentBodyViewHolder(final View itemView) {
         super(itemView);

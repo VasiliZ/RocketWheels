@@ -1,6 +1,7 @@
 package com.github.vasiliz.rocketswheel.userVkNews.common;
 
 import android.content.Context;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,10 @@ public class NewsContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private OnLoadMoreCallback mOnLoadMoreCallback;
     private boolean isLoading = false;
 
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     public NewsContentAdapter(final Context pContext, final ParseNews pParseNews) {
 
         mLayoutInflater = LayoutInflater.from(pContext);
@@ -40,7 +45,7 @@ public class NewsContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (pViewType == CONTENT_ITEM) {
             final View view = mLayoutInflater.inflate(R.layout.post_content_layout, pParent, false);
             return new ContentBodyViewHolder(view);
-        }else {
+        } else {
             final View view = mLayoutInflater.inflate(R.layout.item_progress_bar, pParent, false);
             return new LoadingViewHolder(view);
         }
@@ -50,14 +55,11 @@ public class NewsContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (position >= getItemCount() - 1 && !isLoading && mOnLoadMoreCallback != null) {
-
-
             isLoading = true;
             mOnLoadMoreCallback.onLoadMore();
 
         }
-
-        if (getItemViewType(position)==CONTENT_ITEM){
+        if (getItemViewType(position) == CONTENT_ITEM) {
             ContentBodyViewHolder contentBodyViewHolder = (ContentBodyViewHolder) holder;
             Item item = mItems.get(position);
             ConfigBodyViewHolder configBodyViewHolder = new ConfigBodyViewHolder(contentBodyViewHolder, position, item, mGroups, mProfiles, mContext);
