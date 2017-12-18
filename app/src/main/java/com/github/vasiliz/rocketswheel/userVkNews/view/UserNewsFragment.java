@@ -42,6 +42,7 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
     private NewsContentAdapter mNewsContentAdapter;
 
     static {
+        //TODO move to application
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
@@ -107,6 +108,8 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
                     mParseNews.getResponse().getItems().remove(mParseNews.getResponse().getItems().size() - 1);
                     mNewsContentAdapter.notifyItemRemoved(mParseNews.getResponse().getItems().size());
 
+                    //TODO move to background thread.
+                    //TODO you can use CHARLES or FIDDLER
                     List<Group> groups = pParseNews1.getResponse().getGroups();
                     List<Profiles> profiles = pParseNews1.getResponse().getProfiles();
                     Iterator<Group> iteratorGroup = groups.iterator();
@@ -118,7 +121,7 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
                             Group group = iteratorGroup.next();
 
                             if (mParseNews.getResponse().getGroups().get(i).getGid() == group.getGid()) {
-                                iteratorGroup.remove();
+                                    iteratorGroup.remove();
                                 Log.d(TAG, "isParsed: " + group.getGid());
                             }
                         }

@@ -17,6 +17,7 @@ import com.github.vasiliz.rocketswheel.userVkNews.presenter.UserVkNewsPresenter;
 import com.github.vasiliz.rokets.RocketActivity;
 import com.github.vasiliz.rokets.RocketPresenter;
 
+//TODO if class extend activity it should have name ....Activity
 public class UserVkNewsView extends RocketActivity implements IUserVkNewsView {
 
     private UserVkNewsPresenter mUserVkNewsPresenter;

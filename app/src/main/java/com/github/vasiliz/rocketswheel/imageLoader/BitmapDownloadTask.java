@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 @Deprecated
+//TODO remove deprecated code
 public class BitmapDownloadTask extends AsyncTask<String, Void, Bitmap> {
 
     private final OnDownloadBitmapListener mOnDownloadBitmapListener;

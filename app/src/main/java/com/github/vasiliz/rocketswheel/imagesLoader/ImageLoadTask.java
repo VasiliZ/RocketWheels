@@ -25,10 +25,15 @@ public class ImageLoadTask extends AsyncTask<Void, Void, LoadImageResultModel> {
 
         LoadImageResultModel resultModel = null;
 
+        //TODO split to separate methods
+
         try {
             ImageRequestModel imageRequestModel = ImageLoader.getInstance().getImageQueue().takeFirst();
             resultModel = new LoadImageResultModel(imageRequestModel);
 
+            //TODO add multithreading support
+            //TODO synchronize on ImageLoader level
+            //TODO save instance to variable
             synchronized (ImageLoader.getInstance().getSync()) {
                 final Bitmap bitmap = ImageLoader.getInstance().getLruCache().get(imageRequestModel.getUrl());
                 if (bitmap != null) {

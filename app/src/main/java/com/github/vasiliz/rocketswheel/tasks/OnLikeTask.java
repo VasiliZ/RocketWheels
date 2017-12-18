@@ -11,21 +11,22 @@ import com.google.gson.GsonBuilder;
 
 public class OnLikeTask extends AsyncTask<String, Void, String> {
 
-    public static final String TAG = OnLikeTask.class.getSimpleName();
+    //TODO resolve issues hightlited by android studio.
+    private static final String TAG = OnLikeTask.class.getSimpleName();
     private final ContentBodyViewHolder mContentBodyViewHolder;
-
-    private LikeResponse likeResponse;
 
     public OnLikeTask(ContentBodyViewHolder pContentBodyViewHolder) {
         mContentBodyViewHolder = pContentBodyViewHolder;
     }
 
+
+    //TODO crash if tap very quick to like button
     @Override
     protected String doInBackground(final String... pStrings) {
         HttpService httpService = new HttpService();
         Gson gson = new GsonBuilder().create();
         String response = pStrings[0];
-        likeResponse = gson.fromJson(httpService.request(response), LikeResponse.class);
+        LikeResponse likeResponse = gson.fromJson(httpService.request(response), LikeResponse.class);
 
         return String.valueOf(likeResponse.getLike().getLike());
     }
@@ -34,7 +35,8 @@ public class OnLikeTask extends AsyncTask<String, Void, String> {
     protected void onPostExecute(final String pS) {
         super.onPostExecute(pS);
         Log.d(TAG, "onPostExecute: " + pS);
-        if (pS != ""){
+        if (!pS .equals("")){
+            //TODO asyncTask shouldn't know about view.
             mContentBodyViewHolder.getCountLike().setText(pS);
         }
     }

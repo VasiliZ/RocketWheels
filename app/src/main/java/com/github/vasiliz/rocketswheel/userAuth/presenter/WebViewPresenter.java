@@ -23,6 +23,7 @@ public class WebViewPresenter extends RocketPresenter<IWebClientView> implements
     }
 
     @Override
+    //TODO method don't parseUrl
     public void parseUrl(final String pUrl) {
         mWebForLoginView.showProgress();
         mWebViewModel.getToken(pUrl, pS -> {

@@ -79,6 +79,7 @@ public class ConfigBodyViewHolder {
             mINewsHeaderModel.setTitleImage(mItem, mGroups, mProfiles, mContentBodyViewHolder.getOwnerPhoto());
             mContentBodyViewHolder.getOwnerName().setText(mINewsHeaderModel.getTitle(mItem, mGroups, mProfiles));
 
+            //TODO split to separate method. Think about how to improve readability and code support
             mContentBodyViewHolder.getTextPost().setText(StringUtils.replaceTag(mItem.getText()));
             if (mItem.getAttachments() != null) {
                 if (mItem.getAttachments().size() == 1) {
@@ -161,11 +162,13 @@ public class ConfigBodyViewHolder {
         @Override
         public void onClick(final View v) {
             if (mItem.getLike().getUserLike() == 0) {
+                //TODO reuse it
                 final String sourceOfLike = ConstantsStrings.LIKE_ADD + mItem.getType() + ITEM_ID + mItem.getPostId() + OWNER_ID + mItem.getSouseId() + ACCESS_TOKEN + getToken();
                 getNewLikesCount(sourceOfLike, mContentBodyViewHolder);
 
                 //   ((ImageView)v).setBackgroundResource(R.drawable.liked_image);
                 ((ImageView) v).setImageResource(R.drawable.liked_image);
+                //TODO remove param from method
                 mItem.getLike().setUserLike(1);
             } else {
                 final String sourceOfDislike = ConstantsStrings.LIKE_DELETE + mItem.getType() + ITEM_ID + mItem.getPostId() + OWNER_ID + mItem.getSouseId() + ACCESS_TOKEN + getToken();

@@ -14,6 +14,8 @@ public class MyApp extends Application {
         MyApp.mContext = getApplicationContext();
     }
 
+    //TODO wrong solution. Right ovveride getSystemService and return instance.
+    //TODo static method and static context. Use ContextHolder.
     public static Context getContext(){
         return MyApp.mContext;
     }

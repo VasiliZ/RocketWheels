@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
+import com.github.vasiliz.rocketswheel.MyApp;
 import com.github.vasiliz.rocketswheel.commons.ConstantsStrings;
 import com.github.vasiliz.rocketswheel.utils.IOUtils;
 
@@ -29,13 +30,16 @@ public class CacheBitmap implements IDiskCache {
     private static final int COMPRESS_PERCENT = 80;
     private static final int BUFFER_SIZE = 4096;
 
+    //TODO configurable from ImageLoader.
     private static final int MIN_CACHE_SIZE = 5 * 1024 * 1024;
     private static final int MAX_CACHE_SIZE = 50 * 1024 * 1024;
     private File mFile;
     private long mSizeOfCache;
 
     public CacheBitmap() {
-        mFile = new File("/data/data/com.github.vasiliz.rocketswheel/cache" + ConstantsStrings.DIR_CACHE);
+        //TODO hardcode. Use MyApp.getContext().getCacheDir()
+
+        mFile = new File("/data/data/com.github.vasiliz.rocketswheel-1/cache" + ConstantsStrings.DIR_CACHE);
         Log.d(TAG, "CacheBitmap: " + mFile.getAbsolutePath());
         if ((!mFile.exists()) || (mFile == null)) {
             boolean checkDir = mFile.mkdir();

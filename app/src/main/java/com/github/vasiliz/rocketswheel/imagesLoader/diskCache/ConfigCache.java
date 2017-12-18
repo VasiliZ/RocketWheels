@@ -2,6 +2,7 @@ package com.github.vasiliz.rocketswheel.imagesLoader.diskCache;
 
 import java.io.File;
 
+//TODO not used
 public class ConfigCache {
 
     File mCacheDir;

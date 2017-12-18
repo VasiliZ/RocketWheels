@@ -10,10 +10,9 @@ import com.google.gson.GsonBuilder;
 
 public class NewNewsVk extends AsyncTask<String, Void, ParseNews> {
 
-    public static final String TAG = "1";
-
     private final ParseCallBack mParseCallBack;
 
+    //TODO create httpManager with executor for network operations
     private HttpService mHttpService;
 
     public NewNewsVk(final ParseCallBack pParseCallBack) {
@@ -37,6 +36,7 @@ public class NewNewsVk extends AsyncTask<String, Void, ParseNews> {
         super.onPostExecute(pParseNews);
 
         if (mParseCallBack != null){
+            //TODO rename method. isSomething should return true or false
             mParseCallBack.isParsed(pParseNews);
         }
 
