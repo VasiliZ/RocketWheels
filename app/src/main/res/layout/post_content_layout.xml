@@ -192,7 +192,7 @@
             android:layout_height="1dp"
             android:background="#a9aeb2"/>
 
-        <include layout="@layout/layout_bottom_menu"/>
+        <include layout="@layout/bottom_item_news_layout"/>
 
         <View
             android:layout_width="match_parent"

@@ -3,7 +3,7 @@ package com.github.vasiliz.rocketswheel.imageLoader;
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;
 import android.util.Log;
-
+@Deprecated
 public class ImageCache extends LruCache<String, Bitmap> {
 
     private final String TAG = ImageCache.class.getSimpleName();

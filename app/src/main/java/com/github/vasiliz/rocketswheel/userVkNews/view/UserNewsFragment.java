@@ -1,7 +1,6 @@
 package com.github.vasiliz.rocketswheel.userVkNews.view;
 
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.github.vasiliz.rocketswheel.MyApp;
 import com.github.vasiliz.rocketswheel.R;
@@ -102,7 +100,7 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
         mNewsContentAdapter.setOnLoadMoreCallBack(() -> mRecyclerView.post(() -> {
             addNewItem();
 
-            getNewData(ConstantsStrings.NEW_NEWS_API_METOD + mParseNews.getResponse().getNextScopeNews() + ACCESS_TOKEN + getToken() + API_VK_VERSION, new ParseCallBack() {
+            getNewData(ConstantsStrings.NEW_NEWS_API_METHOD + mParseNews.getResponse().getNextScopeNews() + ACCESS_TOKEN + getToken() + API_VK_VERSION, new ParseCallBack() {
 
                 @Override
                 public void isParsed(final ParseNews pParseNews1) {

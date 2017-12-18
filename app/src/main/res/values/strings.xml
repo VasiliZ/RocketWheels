@@ -5,4 +5,5 @@
     <string name="action_bar_news">Новости</string>
     <string name="ether">Эфир</string>
     <string name="record">Запись</string>
+    <string name="message">Сообщения</string>
 </resources>

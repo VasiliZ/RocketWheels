@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 
 import com.github.vasiliz.rocketswheel.imageLoader.ImageManager;
 import com.github.vasiliz.rocketswheel.json.vkNewsModel.Item;
-
+@Deprecated
 public interface IBodyModel {
 
     void setContentToBodyNews(final FrameLayout contentBody, final Context pContext, final Item pItem, final ImageManager pImageManager);

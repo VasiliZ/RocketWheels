@@ -4,21 +4,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/news_fragment"
-            android:name="com.github.vasiliz.rocketswheel.userVkNews.view.UserNewsFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/linearLayout"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -35,10 +27,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:state_selected="true"
+            android:background="@android:color/white"
             app:srcCompat="@drawable/selector_news_button"/>
 
+
+
         <ImageView
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -46,6 +41,7 @@
             app:srcCompat="@drawable/ic_find_in_page_black_24dp"/>
 
         <ImageView
+            android:id="@+id/user_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

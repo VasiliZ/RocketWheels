@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import java.util.concurrent.ExecutionException;
-
+@Deprecated
 public class ImageManager {
 
     private Downloader mDownloader = new Downloader();

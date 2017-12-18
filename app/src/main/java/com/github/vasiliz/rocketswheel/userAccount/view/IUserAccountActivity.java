@@ -26,12 +26,10 @@ public class IUserAccountActivity extends RocketActivity implements IUserAccount
 
     @Override
     public void showMe() {
-
     }
 
     @Override
     public void logout() {
-
     }
 
     @Override

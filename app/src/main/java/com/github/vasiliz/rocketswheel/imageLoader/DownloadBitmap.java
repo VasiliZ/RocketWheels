@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+@Deprecated
 public class DownloadBitmap {
 
     private Bitmap mBitmap;
