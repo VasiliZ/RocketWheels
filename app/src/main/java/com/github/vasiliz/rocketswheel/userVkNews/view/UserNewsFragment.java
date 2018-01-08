@@ -3,6 +3,7 @@ package com.github.vasiliz.rocketswheel.userVkNews.view;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDelegate;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import com.github.vasiliz.rocketswheel.MyApp;
 import com.github.vasiliz.rocketswheel.R;
 import com.github.vasiliz.rocketswheel.commons.ConstantsStrings;
+import com.github.vasiliz.rocketswheel.db.SqlConnector;
 import com.github.vasiliz.rocketswheel.json.vkNewsModel.Group;
 import com.github.vasiliz.rocketswheel.json.vkNewsModel.Item;
 import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
@@ -24,6 +26,7 @@ import com.github.vasiliz.rocketswheel.tasks.NewNewsVk;
 import com.github.vasiliz.rocketswheel.userVkNews.common.NewsContentAdapter;
 import com.github.vasiliz.rocketswheel.userVkNews.common.ParseCallBack;
 import com.github.vasiliz.rocketswheel.userVkNews.model.UserVkNewsModel;
+import com.github.vasiliz.rocketswheel.utils.ContextHolder;
 
 import java.util.Iterator;
 import java.util.List;
@@ -36,20 +39,19 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
     public static final String TAG = "1";
     public static final String ACCESS_TOKEN = "&access_token=";
 
+    private SqlConnector sqlConnector;
     private RecyclerView mRecyclerView;
     private boolean mFlag = true;
     private ParseNews mParseNews;
     private NewsContentAdapter mNewsContentAdapter;
 
-    static {
-        //TODO move to application
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-    }
+
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        SQLiteDatabase sqLiteDatabase = new SqlConnector(ContextHolder.getContext()).getWritableDatabase();
     }
 
     @Nullable
@@ -85,15 +87,15 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
     }
 
     private String getToken() {
-        final SharedPreferences sharedPreferences = MyApp.getContext().getSharedPreferences(ConstantsStrings.APP_PREFERENCES, MODE_PRIVATE);
+        final SharedPreferences sharedPreferences = ContextHolder.getContext().getSharedPreferences(ConstantsStrings.APP_PREFERENCES, MODE_PRIVATE);
         return sharedPreferences.getString(ConstantsStrings.APP_TOKEN_NAME, "");
     }
 
     public void setDataNews(final ParseNews pParseNews) {
 
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MyApp.getContext());
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ContextHolder.getContext());
         mParseNews = pParseNews;
-        mNewsContentAdapter = new NewsContentAdapter(MyApp.getContext(), pParseNews);
+        mNewsContentAdapter = new NewsContentAdapter(ContextHolder.getContext(), pParseNews);
         linearLayoutManager.canScrollVertically();
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
