@@ -24,8 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#4f81b6"
-        >
+        android:background="#4f81b6">
 
         <ImageView
             style="@style/NewsViewTheme"

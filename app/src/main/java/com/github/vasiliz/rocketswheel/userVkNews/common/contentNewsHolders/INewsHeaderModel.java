@@ -1,13 +1,10 @@
 package com.github.vasiliz.rocketswheel.userVkNews.common.contentNewsHolders;
 
-import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.github.vasiliz.rocketswheel.imageLoader.Downloader;
-import com.github.vasiliz.rocketswheel.imageLoader.ImageManager;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Group;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Item;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Profiles;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Group;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Item;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Profiles;
 
 import java.util.List;
 

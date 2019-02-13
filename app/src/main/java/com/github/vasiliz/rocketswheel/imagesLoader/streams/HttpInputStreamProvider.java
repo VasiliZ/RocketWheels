@@ -8,7 +8,7 @@ import java.net.URL;
 public class HttpInputStreamProvider implements IStreamContract<String> {
 
     public InputStream get(String pUrl) throws IOException {
-        HttpURLConnection urlConnection = (HttpURLConnection) (new URL(pUrl)).openConnection();
+        final HttpURLConnection urlConnection = (HttpURLConnection) (new URL(pUrl)).openConnection();
         return urlConnection.getInputStream();
     }
 

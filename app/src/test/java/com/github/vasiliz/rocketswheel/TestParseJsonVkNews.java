@@ -1,6 +1,6 @@
 package com.github.vasiliz.rocketswheel;
 
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.ParseNews;
 import com.github.vasiliz.rocketswheel.services.httpService.HttpService;
 import com.github.vasiliz.rocketswheel.services.httpService.IHttpCallBack;
 import com.google.gson.Gson;

@@ -1,7 +1,7 @@
 package com.github.vasiliz.rocketswheel.userVkNews.common;
 
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Item;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Item;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.ParseNews;
 
 import java.util.List;
 @Deprecated

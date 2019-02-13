@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.github.vasiliz.rocketswheel.R;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.ParseNews;
 import com.github.vasiliz.rocketswheel.userMesseger.UserMessengerFragment;
 import com.github.vasiliz.rocketswheel.userVkNews.model.UserVkNewsModel;
 import com.github.vasiliz.rocketswheel.userVkNews.presenter.UserVkNewsPresenter;

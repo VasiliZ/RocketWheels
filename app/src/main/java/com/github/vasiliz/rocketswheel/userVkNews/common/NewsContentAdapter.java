@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.vasiliz.rocketswheel.R;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Group;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Item;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Profiles;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Group;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Item;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.ParseNews;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Profiles;
 
 import java.util.List;
 

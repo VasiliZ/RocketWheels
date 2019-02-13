@@ -2,7 +2,7 @@ package com.github.vasiliz.rocketswheel.tasks;
 
 import android.os.AsyncTask;
 
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.ParseNews;
 import com.github.vasiliz.rocketswheel.services.httpService.HttpService;
 import com.github.vasiliz.rocketswheel.userVkNews.common.ParseCallBack;
 import com.google.gson.Gson;

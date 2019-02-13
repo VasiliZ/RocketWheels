@@ -1,4 +1,4 @@
-package com.github.vasiliz.rocketswheel.json.likeModel;
+package com.github.vasiliz.rocketswheel.models.likeModel;
 
 import com.google.gson.annotations.SerializedName;
 

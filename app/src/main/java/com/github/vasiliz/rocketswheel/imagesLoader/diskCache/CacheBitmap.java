@@ -37,9 +37,8 @@ public class CacheBitmap implements IDiskCache {
     private long mSizeOfCache;
 
     public CacheBitmap() {
-        //TODO hardcode. Use MyApp.getContext().getCacheDir()
 
-        mFile = new File("/data/data/com.github.vasiliz.rocketswheel-1/cache" + ConstantsStrings.DIR_CACHE);
+        mFile = new File(MyApp.getContext().getCacheDir() + ConstantsStrings.DIR_CACHE);
         Log.d(TAG, "CacheBitmap: " + mFile.getAbsolutePath());
         if ((!mFile.exists()) || (mFile == null)) {
             boolean checkDir = mFile.mkdir();
@@ -68,7 +67,7 @@ public class CacheBitmap implements IDiskCache {
         if (currentCacheSize > mSizeOfCache) {
             File[] files = mFile.listFiles();
 
-            Arrays.sort(files, (pLeft, pRight) -> Long.valueOf(pLeft.lastModified()).compareTo(pRight.lastModified()));
+            Arrays.sort(files, (pLeft, pRight) -> Long.compare(pLeft.lastModified(), pRight.lastModified()));
             int i = 0;
             do {
                 final File f = files[i];

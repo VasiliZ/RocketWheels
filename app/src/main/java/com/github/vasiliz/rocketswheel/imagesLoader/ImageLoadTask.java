@@ -3,10 +3,6 @@ package com.github.vasiliz.rocketswheel.imagesLoader;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
-import com.github.vasiliz.rocketswheel.imageLoader.ImageCache;
-import com.github.vasiliz.rocketswheel.imagesLoader.diskCache.CacheBitmap;
-import com.github.vasiliz.rocketswheel.imagesLoader.diskCache.ConfigCache;
-import com.github.vasiliz.rocketswheel.imagesLoader.diskCache.IDiskCache;
 import com.github.vasiliz.rocketswheel.imagesLoader.streams.FileInputStreamProvider;
 import com.github.vasiliz.rocketswheel.imagesLoader.streams.HttpInputStreamProvider;
 
@@ -15,9 +11,11 @@ import java.io.InputStream;
 
 public class ImageLoadTask extends AsyncTask<Void, Void, LoadImageResultModel> {
 
+    private ImageLoader imageLoader = ImageLoader.getInstance();
+
     @Override
     protected void onPostExecute(final LoadImageResultModel pLoadImageResultModel) {
-        ImageLoader.getInstance().setImageOnBitmap(pLoadImageResultModel);
+        imageLoader.setImageOnBitmap(pLoadImageResultModel);
     }
 
     @Override
@@ -28,46 +26,44 @@ public class ImageLoadTask extends AsyncTask<Void, Void, LoadImageResultModel> {
         //TODO split to separate methods
 
         try {
-            ImageRequestModel imageRequestModel = ImageLoader.getInstance().getImageQueue().takeFirst();
+            final ImageRequestModel imageRequestModel = imageLoader.getImageQueue().takeFirst();
             resultModel = new LoadImageResultModel(imageRequestModel);
+            Bitmap bitmap;
 
             //TODO add multithreading support
             //TODO synchronize on ImageLoader level
-            //TODO save instance to variable
-            synchronized (ImageLoader.getInstance().getSync()) {
-                final Bitmap bitmap = ImageLoader.getInstance().getLruCache().get(imageRequestModel.getUrl());
-                if (bitmap != null) {
-                    resultModel.setBitmap(bitmap);
+            synchronized (imageLoader.getSync()) {
+                final Bitmap bitmapLRU = imageLoader.getLruCache().get(imageRequestModel.getUrl());
+                if (bitmapLRU != null) {
+                    resultModel.setBitmap(bitmapLRU);
                     return resultModel;
                 }
             }
 
-            Bitmap bitmap;
-
-            if (ImageLoader.getInstance().getIDiskCache() != null) {
+            if (imageLoader.getIDiskCache() != null) {
                 try {
-                    File file = ImageLoader.getInstance().getIDiskCache().getFile(imageRequestModel.getUrl());
-                    InputStream inputStream = new FileInputStreamProvider().get(file);
-                    bitmap = ImageLoader.getInstance().getResizedBitmap(inputStream, imageRequestModel.getWidth(), imageRequestModel.getHeight());
+                    final File file = imageLoader.getIDiskCache().getFile(imageRequestModel.getUrl());
+                    final InputStream inputStream = new FileInputStreamProvider().get(file);
+                    bitmap = imageLoader.getResizedBitmap(inputStream, imageRequestModel.getWidth(), imageRequestModel.getHeight());
 
                     if (bitmap != null) {
                         resultModel.setBitmap(bitmap);
                         return resultModel;
                     }
-                } catch (Exception e) {
+                } catch (final Exception e) {
                     e.fillInStackTrace();
                 }
             }
 
-            InputStream inputStream = new HttpInputStreamProvider().get(imageRequestModel.getUrl());
+            final InputStream inputStream = new HttpInputStreamProvider().get(imageRequestModel.getUrl());
 
-            bitmap = ImageLoader.getInstance().getResizedBitmap(inputStream, imageRequestModel.getWidth(), imageRequestModel.getHeight());
+            bitmap = imageLoader.getResizedBitmap(inputStream, imageRequestModel.getWidth(), imageRequestModel.getHeight());
 
             if (bitmap != null) {
                 resultModel.setBitmap(bitmap);
-                ImageLoader.getInstance().cacheBitmap(imageRequestModel, bitmap);
+                imageLoader.cacheBitmap(imageRequestModel, bitmap);
             }
-        } catch (Exception pE) {
+        } catch (final Exception pE) {
             if (resultModel != null) {
                 resultModel.setException(pE);
             }

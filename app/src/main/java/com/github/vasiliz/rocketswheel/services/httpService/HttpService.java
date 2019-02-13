@@ -5,13 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class HttpService implements IHttpCallBack {
 
-    private BufferedReader mBufferedReader;
     private StringBuffer mStringBuffer;
 
     @Override
@@ -19,7 +17,7 @@ public class HttpService implements IHttpCallBack {
         try {
             final URL url = new URL(pRequest);
             final HttpsURLConnection URLConnection = (HttpsURLConnection) url.openConnection();
-            mBufferedReader = new BufferedReader(new InputStreamReader(URLConnection.getInputStream()));
+            final BufferedReader mBufferedReader = new BufferedReader(new InputStreamReader(URLConnection.getInputStream()));
 
             mStringBuffer = new StringBuffer();
             String line;
@@ -29,9 +27,9 @@ public class HttpService implements IHttpCallBack {
             mBufferedReader.close();
 
         } catch (final MalformedURLException pE) {
-            pE.printStackTrace();
+            pE.fillInStackTrace();
         } catch (final IOException pE) {
-            pE.printStackTrace();
+            pE.fillInStackTrace();
         }
 
         return mStringBuffer.toString();

@@ -6,6 +6,7 @@ import android.util.LruCache;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
+import com.github.vasiliz.rocketswheel.imagesLoader.diskCache.CacheBitmap;
 import com.github.vasiliz.rocketswheel.imagesLoader.diskCache.IDiskCache;
 
 import java.io.ByteArrayOutputStream;
@@ -81,15 +82,13 @@ public final class ImageLoader {
 
         imageView.setImageBitmap(null);
 
-        if (checkImageSize(pImageRequestModel)) {
-            imageView.setTag(pImageRequestModel.getUrl());
-            mImageQueue.addFirst(pImageRequestModel);
-            dispatchToLoadImage();
-        } else {
-            //todo else without sise image view
-            waitImageRequest(pImageRequestModel);
-        }
-
+            if (checkImageSize(pImageRequestModel)) {
+                imageView.setTag(pImageRequestModel.getUrl());
+                mImageQueue.addFirst(pImageRequestModel);
+                dispatchToLoadImage();
+            } else {
+                waitImageRequest(pImageRequestModel);
+            }
     }
 
     private void waitImageRequest(final ImageRequestModel pImageRequestModel) {

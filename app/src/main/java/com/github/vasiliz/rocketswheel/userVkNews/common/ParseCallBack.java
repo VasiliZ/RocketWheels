@@ -1,7 +1,6 @@
 package com.github.vasiliz.rocketswheel.userVkNews.common;
 
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.ParseNews;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Response;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.ParseNews;
 
 public interface ParseCallBack {
 

@@ -1,11 +1,8 @@
 package com.github.vasiliz.rocketswheel.userVkNews.common;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatDelegate;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,19 +11,16 @@ import android.widget.TextView;
 import com.github.vasiliz.rocketswheel.MyApp;
 import com.github.vasiliz.rocketswheel.R;
 import com.github.vasiliz.rocketswheel.commons.ConstantsStrings;
-import com.github.vasiliz.rocketswheel.imageLoader.ImageManager;
 import com.github.vasiliz.rocketswheel.imagesLoader.ImageLoader;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Group;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Item;
-import com.github.vasiliz.rocketswheel.json.vkNewsModel.Profiles;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Group;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Item;
+import com.github.vasiliz.rocketswheel.models.vkNewsModel.Profiles;
 import com.github.vasiliz.rocketswheel.tasks.OnLikeTask;
-import com.github.vasiliz.rocketswheel.userAuth.model.ICompliteCallBack;
 import com.github.vasiliz.rocketswheel.userVkNews.common.contentNewsHolders.INewsHeaderModel;
 import com.github.vasiliz.rocketswheel.userVkNews.common.contentNewsHolders.NewsHeaderModel;
 import com.github.vasiliz.rocketswheel.utils.StringUtils;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -37,7 +31,6 @@ public class ConfigBodyViewHolder {
     private static final String OWNER_ID = "&owner_id=";
     public static final String ACCESS_TOKEN = "&access_token=";
     private final ContentBodyViewHolder mContentBodyViewHolder;
-    private ImageManager mImageManager = new ImageManager();
     private INewsHeaderModel mINewsHeaderModel = new NewsHeaderModel();
     private final Item mItem;
     private final List<Group> mGroups;
@@ -57,7 +50,7 @@ public class ConfigBodyViewHolder {
     }
 
     public void setData() {
-        try {
+
             mContentBodyViewHolder.getPhotoContent().setVisibility(View.GONE);
             mContentBodyViewHolder.getGifContent().setVisibility(View.GONE);
             mContentBodyViewHolder.getVideoContent().setVisibility(View.GONE);
@@ -67,14 +60,10 @@ public class ConfigBodyViewHolder {
 
             setContentOnView();
 
-        } catch (final ExecutionException pE) {
-            pE.printStackTrace();
-        } catch (final InterruptedException pE) {
-            pE.printStackTrace();
-        }
+        
     }
 
-    private void setContentOnView() throws ExecutionException, InterruptedException {
+    private void setContentOnView() {
         if (mItem != null) {
             mINewsHeaderModel.setTitleImage(mItem, mGroups, mProfiles, mContentBodyViewHolder.getOwnerPhoto());
             mContentBodyViewHolder.getOwnerName().setText(mINewsHeaderModel.getTitle(mItem, mGroups, mProfiles));

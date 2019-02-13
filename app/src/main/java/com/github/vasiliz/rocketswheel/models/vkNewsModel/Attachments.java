@@ -1,28 +1,28 @@
-package com.github.vasiliz.rocketswheel.json.vkNewsModel;
+package com.github.vasiliz.rocketswheel.models.vkNewsModel;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Attachment {
+public class Attachments {
 
     @SerializedName("type")
-    private String typeAttachment;
+    private String mType;
     @SerializedName("photo")
     private AttachmentPhoto mAttachmentPhoto;
-    @SerializedName("video")
-    private AttachmentVideo mAttachmentVideo;
-    @SerializedName("doc")
-    private AttachmentDoc mAttachmentDoc;
     @SerializedName("link")
     private AttachmentLink mAttachmentLink;
     @SerializedName("audio")
     private AttachmentAudio mAttachmentAudio;
+    @SerializedName("doc")
+    private AttachmentDoc mAttachmentDoc;
+    @SerializedName("video")
+    private AttachmentVideo mAttachmentVideo;
 
-    public String getTypeAttachment() {
-        return typeAttachment;
+    public String getType() {
+        return mType;
     }
 
-    public void setTypeAttachment(final String pTypeAttachment) {
-        typeAttachment = pTypeAttachment;
+    public void setType(final String pType) {
+        mType = pType;
     }
 
     public AttachmentPhoto getAttachmentPhoto() {
@@ -31,22 +31,6 @@ public class Attachment {
 
     public void setAttachmentPhoto(final AttachmentPhoto pAttachmentPhoto) {
         mAttachmentPhoto = pAttachmentPhoto;
-    }
-
-    public AttachmentVideo getAttachmentVideo() {
-        return mAttachmentVideo;
-    }
-
-    public void setAttachmentVideo(final AttachmentVideo pAttachmentVideo) {
-        mAttachmentVideo = pAttachmentVideo;
-    }
-
-    public AttachmentDoc getAttachmentDoc() {
-        return mAttachmentDoc;
-    }
-
-    public void setAttachmentDoc(final AttachmentDoc pAttachmentDoc) {
-        mAttachmentDoc = pAttachmentDoc;
     }
 
     public AttachmentLink getAttachmentLink() {
@@ -63,5 +47,21 @@ public class Attachment {
 
     public void setAttachmentAudio(final AttachmentAudio pAttachmentAudio) {
         mAttachmentAudio = pAttachmentAudio;
+    }
+
+    public AttachmentDoc getAttachmentDoc() {
+        return mAttachmentDoc;
+    }
+
+    public void setAttachmentDoc(final AttachmentDoc pAttachmentDoc) {
+        mAttachmentDoc = pAttachmentDoc;
+    }
+
+    public AttachmentVideo getAttachmentVideo() {
+        return mAttachmentVideo;
+    }
+
+    public void setAttachmentVideo(final AttachmentVideo pAttachmentVideo) {
+        mAttachmentVideo = pAttachmentVideo;
     }
 }

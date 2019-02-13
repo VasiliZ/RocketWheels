@@ -1,4 +1,4 @@
-package com.github.vasiliz.rocketswheel.json.vkNewsModel;
+package com.github.vasiliz.rocketswheel.models.vkNewsModel;
 
 import com.google.gson.annotations.SerializedName;
 

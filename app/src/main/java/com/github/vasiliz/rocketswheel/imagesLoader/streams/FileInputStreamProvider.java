@@ -12,7 +12,6 @@ public class FileInputStreamProvider implements IStreamContract<File> {
 
     @Override
     public InputStream get(final File pUrl) throws IOException {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(pUrl), PART_OF_FILE);
-        return bufferedInputStream;
+        return new BufferedInputStream(new FileInputStream(pUrl), PART_OF_FILE);
     }
 }

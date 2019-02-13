@@ -3,7 +3,7 @@ package com.github.vasiliz.rocketswheel.tasks;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.github.vasiliz.rocketswheel.json.likeModel.LikeResponse;
+import com.github.vasiliz.rocketswheel.models.likeModel.LikeResponse;
 import com.github.vasiliz.rocketswheel.services.httpService.HttpService;
 import com.github.vasiliz.rocketswheel.userVkNews.common.ContentBodyViewHolder;
 import com.google.gson.Gson;

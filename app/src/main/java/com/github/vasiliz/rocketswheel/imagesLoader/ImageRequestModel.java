@@ -36,10 +36,6 @@ public class ImageRequestModel {
         mUrl = pUrl;
     }
 
-    public void setPointImage(final WeakReference<ImageView> pPointImage) {
-        mPointImage = pPointImage;
-    }
-
     public void setWidth(final int pWidth) {
         mWidth = pWidth;
     }

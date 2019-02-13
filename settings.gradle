@@ -1,1 +1,1 @@
-include ':app', ':rokets-debug', ':backendSample'
+include ':app', ':rokets-debug'

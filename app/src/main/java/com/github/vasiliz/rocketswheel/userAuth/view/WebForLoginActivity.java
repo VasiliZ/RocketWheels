@@ -71,13 +71,11 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
         }
     }
 
-    //todo add this method for model #1
     @Override
     public void showProgress() {
         mProgressDialog = ProgressDialog.show(this, "", getResources().getString(R.string.wait));
     }
 
-    //todo add this method for model #2
     @Override
     public void hideProgress() {
         if (mProgressDialog != null) {
