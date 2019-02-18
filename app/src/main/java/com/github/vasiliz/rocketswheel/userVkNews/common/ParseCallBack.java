@@ -4,5 +4,5 @@ import com.github.vasiliz.rocketswheel.models.vkNewsModel.ParseNews;
 
 public interface ParseCallBack {
 
-    void isParsed(ParseNews pParseNews);
+    void getNews(ParseNews pParseNews);
 }

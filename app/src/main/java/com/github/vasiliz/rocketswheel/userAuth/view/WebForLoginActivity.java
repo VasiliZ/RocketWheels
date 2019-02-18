@@ -87,7 +87,6 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
     public void saveToken(final String pToken) {
         final Editor editor = mSharedPreferences.edit();
         editor.putString(ConstantsStrings.APP_TOKEN_NAME, pToken);
-        System.out.println(pToken);
         editor.apply();
     }
 
@@ -98,11 +97,8 @@ public class WebForLoginActivity extends RocketActivity implements IWebClientVie
 
     public boolean checkAuth(){
         final SharedPreferences sharedPreferences = getSharedPreferences(ConstantsStrings.APP_PREFERENCES, MODE_PRIVATE);
-        if (sharedPreferences.getString(ConstantsStrings.APP_TOKEN_NAME, "")!=null) {
-            return true;
-        }else {
-            return false;
-        }
+        sharedPreferences.getString(ConstantsStrings.APP_TOKEN_NAME, "");
+        return true;
     }
 
 }

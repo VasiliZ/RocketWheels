@@ -2,15 +2,9 @@ package com.github.vasiliz.rocketswheel.commons;
 
 public class ConstantsStrings {
 
-    //TODO create api builder. create constants for base host, client id, redirect uri etc.
-    //TODO move to API class
     public static final String URL_AUTH = "https://oauth.vk.com/authorize?client_id=6218232&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=wall,video,friends,messages ,offline&response_type=token&v=5.68&state=123456";
     public static final String URL_GET_ACCESS_TOKEN = "https://oauth.vk.com/blank.html#access_token=";
 
-    public class Preferences {
-
-    }
-    //TODO move to class preferences
     public static final String APP_PREFERENCES = "mySettings";
     public static final String APP_TOKEN_NAME = "vkToken";
     public static final String GET_USER_NEWS_URL = "https://api.vk.com/method/newsfeed.get?filters=post&end_time&access_token=";

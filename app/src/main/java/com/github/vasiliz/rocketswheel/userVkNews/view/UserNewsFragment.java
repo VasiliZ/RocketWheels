@@ -22,6 +22,7 @@ import com.github.vasiliz.rocketswheel.models.vkNewsModel.Profiles;
 import com.github.vasiliz.rocketswheel.tasks.NewNewsVk;
 import com.github.vasiliz.rocketswheel.userVkNews.common.NewsContentAdapter;
 import com.github.vasiliz.rocketswheel.userVkNews.common.ParseCallBack;
+import com.github.vasiliz.rocketswheel.userVkNews.model.IUserVkNewsModel;
 import com.github.vasiliz.rocketswheel.userVkNews.model.UserVkNewsModel;
 
 import java.util.Iterator;
@@ -109,7 +110,7 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
 
                         if (mParseNews.getResponse().getGroups().get(i).getGid() == group.getGid()) {
                             iteratorGroup.remove();
-                            Log.d(TAG, "isParsed: " + group.getGid());
+                            Log.d(TAG, "getNews: " + group.getGid());
                         }
                     }
                 }
@@ -124,7 +125,7 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
 
                         if (mParseNews.getResponse().getProfiles().get(i).getUid() == profiles1.getUid()) {
                             profilesIterator.remove();
-                            Log.d(TAG, "isParsed: " + profiles1.getUid());
+                            Log.d(TAG, "getNews: " + profiles1.getUid());
                         }
                     }
                 }
@@ -161,7 +162,7 @@ public class UserNewsFragment extends Fragment implements IUserVkNewsView {
     }
 
     public void parseData(final String pUrl) {
-        final UserVkNewsModel userVkNewsModel = new UserVkNewsModel();
-        userVkNewsModel.getNewsVk(pUrl, pParseNews -> setDataNews(pParseNews));
+        final IUserVkNewsModel userVkNewsModel = new UserVkNewsModel();
+        userVkNewsModel.getNewsVk(pUrl, this::setDataNews);
     }
 }

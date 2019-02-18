@@ -33,7 +33,7 @@ ParseUserNewsTask extends AsyncTask<String, Void, ParseNews> {
         super.onPostExecute(pParseNews);
 
         if (mICompliteCallBack != null) {
-            mICompliteCallBack.isParsed(pParseNews);
+            mICompliteCallBack.getNews(pParseNews);
 
         }
     }

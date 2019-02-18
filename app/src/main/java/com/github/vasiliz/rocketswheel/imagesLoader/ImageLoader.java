@@ -13,25 +13,24 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public final class ImageLoader {
 
-    private final ExecutorService mExecutorService;
+    private final ThreadPoolExecutor mThreadPoolExecutor;
     private final Object mSync;
     private final LruCache<String, Bitmap> mLruCache;
     private final LinkedBlockingDeque<ImageRequestModel> mImageQueue;
-    private final int MAX_MEMORY_FOR_LRU_CACHE = 1024 * 1024 * 8;
+    private static final int MAX_MEMORY_FOR_LRU_CACHE = 1024 * 1024 * 8;
 
     public IDiskCache getIDiskCache() {
         return mIDiskCache;
     }
-
     private IDiskCache mIDiskCache;
 
-    private static class ImageLoaderHolder {
+    private static final class ImageLoaderHolder {
 
         private static final ImageLoader INSTANCE = new ImageLoader();
 
@@ -44,9 +43,11 @@ public final class ImageLoader {
     private ImageLoader() {
 
         mSync = new Object();
-        mExecutorService = Executors.newFixedThreadPool(4);
+        mThreadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
         mImageQueue = new LinkedBlockingDeque<>();
-      //  mIDiskCache = new CacheBitmap();
+
+            mIDiskCache = new CacheBitmap();
+
         mLruCache = new LruCache<String, Bitmap>(getLruCacheSize()) {
 
             @Override
@@ -138,7 +139,8 @@ public final class ImageLoader {
     }
 
     private void dispatchToLoadImage() {
-        new ImageLoadTask().executeOnExecutor(mExecutorService);
+        final Runnable imageRunnable = new ImageRunnable();
+        mThreadPoolExecutor.execute(imageRunnable);
 
     }
 
@@ -155,11 +157,15 @@ public final class ImageLoader {
         }
     }
 
-    Bitmap getResizedBitmap(final InputStream pInputStream, final int pWidth, final int pHeigth) throws IOException {
+    Bitmap getResizedBitmap(final InputStream pInputStream,
+                            final int pWidth,
+                            final int pHeigth)
+            throws IOException {
 
         final BitmapFactory.Options options = new BitmapFactory.Options();
 
-        final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(pInputStream.available());
+        final ByteArrayOutputStream byteArrayOutputStream =
+                new ByteArrayOutputStream(pInputStream.available());
         final byte[] part = new byte[1 << 16];
         int bytesForReading;
 
@@ -180,7 +186,8 @@ public final class ImageLoader {
 
     }
 
-    private static int calculateSampleSize(final BitmapFactory.Options pOptions, final int pReqWidth, final int pReqHeigth) {
+    private static int calculateSampleSize(final BitmapFactory.Options pOptions,
+                                           final int pReqWidth, final int pReqHeigth) {
         final int height = pOptions.outHeight;
         final int width = pOptions.outWidth;
         int size = 1;
@@ -205,9 +212,7 @@ public final class ImageLoader {
             if (mIDiskCache != null){
                 mIDiskCache.save(pImageRequestModel.getUrl(), pBitmap);
             }
-        } catch (NoSuchAlgorithmException pE) {
-            pE.printStackTrace();
-        } catch (IOException pE) {
+        } catch (final IOException pE) {
             pE.printStackTrace();
         }
     }

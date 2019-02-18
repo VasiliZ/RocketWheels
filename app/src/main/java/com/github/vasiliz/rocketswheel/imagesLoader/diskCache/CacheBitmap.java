@@ -1,62 +1,47 @@
 package com.github.vasiliz.rocketswheel.imagesLoader.diskCache;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Environment;
+import android.net.Uri;
 import android.os.StatFs;
 import android.util.Log;
 
 import com.github.vasiliz.rocketswheel.MyApp;
-import com.github.vasiliz.rocketswheel.commons.ConstantsStrings;
-import com.github.vasiliz.rocketswheel.utils.IOUtils;
 
-import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
-
-import static java.security.AccessController.getContext;
+import java.util.Objects;
 
 public class CacheBitmap implements IDiskCache {
 
     private static final String TAG = CacheBitmap.class.getSimpleName();
-    private static final Bitmap.CompressFormat COMPRESS_FORMAT = Bitmap.CompressFormat.JPEG;
+    private static final Bitmap.CompressFormat COMPRESS_FORMAT = Bitmap.CompressFormat.PNG;
     private static final int COMPRESS_PERCENT = 80;
-    private static final int BUFFER_SIZE = 4096;
-
-    //TODO configurable from ImageLoader.
     private static final int MIN_CACHE_SIZE = 5 * 1024 * 1024;
     private static final int MAX_CACHE_SIZE = 50 * 1024 * 1024;
     private File mFile;
     private long mSizeOfCache;
 
     public CacheBitmap() {
-
-        mFile = new File(MyApp.getContext().getCacheDir() + ConstantsStrings.DIR_CACHE);
-        Log.d(TAG, "CacheBitmap: " + mFile.getAbsolutePath());
-        if ((!mFile.exists()) || (mFile == null)) {
-            boolean checkDir = mFile.mkdir();
-            if (!checkDir) {
-                throw new IllegalStateException("Can't create dir in here");
-            }
-        }
-
-        mSizeOfCache = getDiskCacheSize(mFile);
-        cleaningCache();
-
+        init();
     }
 
-    private long getDiskCacheSize(File pDirCache) {
-        long size = MIN_CACHE_SIZE;
+    private void init() {
 
-        StatFs statFs = new StatFs(pDirCache.getAbsolutePath());
-        long available = statFs.getBlockCount() * statFs.getBlockSize();
+        mFile = new File(MyApp.getContext().getFilesDir().getPath());
+        mSizeOfCache = getDiskCacheSize(mFile);
+        cleaningCache();
+    }
+
+    private long getDiskCacheSize(final File pDirCache) {
+        final long size;
+
+        final StatFs statFs = new StatFs(pDirCache.getAbsolutePath());
+        final long available = statFs.getBlockCount() * statFs.getBlockSize();
         size = available / 50;
 
         return Math.max(Math.min(size, MAX_CACHE_SIZE), MIN_CACHE_SIZE);
@@ -65,7 +50,7 @@ public class CacheBitmap implements IDiskCache {
     private void cleaningCache() {
         long currentCacheSize = currentCacheSize();
         if (currentCacheSize > mSizeOfCache) {
-            File[] files = mFile.listFiles();
+            final File[] files = mFile.listFiles();
 
             Arrays.sort(files, (pLeft, pRight) -> Long.compare(pLeft.lastModified(), pRight.lastModified()));
             int i = 0;
@@ -82,47 +67,41 @@ public class CacheBitmap implements IDiskCache {
 
     private long currentCacheSize() {
         long currentSize = mFile.length();
-        File[] files = mFile.listFiles();
-        for (File file : files) {
+        final File[] files = mFile.listFiles();
+        for (final File file : files) {
             currentSize += file.length();
         }
         return currentSize;
     }
 
     @Override
-    public File getFile(final String pImageUrl) throws IOException, NoSuchAlgorithmException {
+    public File getFile(final String pImageUrl) {
 
-        MessageDigest toMd5 = MessageDigest.getInstance("MD5");
-        final String fileName =  toMd5.digest(pImageUrl.getBytes()).toString() + ".jpg"; // ?
+        final File[] files = mFile.listFiles();
+        if(files.length>0) {
 
-        File[] files = mFile.listFiles((dir, name) -> fileName.equals(name));
-
-        if (files != null && files.length == 1) {
-            return files[0];
-        } else {
-            File file = new File(mFile, fileName);
-            if (!file.exists()) {
-                boolean isCreateFile = file.createNewFile();
-                Log.d(TAG, "getFile: " + isCreateFile);
+            for (final File file : files) {
+                Log.d(TAG, file.getName());
+                if (Objects.requireNonNull(Uri.parse(pImageUrl).getLastPathSegment()).contains(file.getName())) {
+                    return file;
+                }
             }
-            return file;
         }
+        return null;
     }
 
     @Override
-    public void save(final String pUrl, final Bitmap pBitmap) throws IOException, NoSuchAlgorithmException {
+    public void save(final String pUrl, final Bitmap pBitmap) throws IOException {
+        cleaningCache();
+        final String fileName = Uri.parse(pUrl).getLastPathSegment();
+        if (fileName != null) {
+            final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            pBitmap.compress(COMPRESS_FORMAT, COMPRESS_PERCENT, byteArrayOutputStream);
+            final byte[] bytes = byteArrayOutputStream.toByteArray();
 
-        File image = getFile(pUrl);
-        FileOutputStream fileOutputStream = new FileOutputStream(image);
-        OutputStream outputStream = new BufferedOutputStream(fileOutputStream, BUFFER_SIZE);
-
-        try {
-            boolean isSavedFile = pBitmap.compress(COMPRESS_FORMAT, COMPRESS_PERCENT, outputStream);
-            image.setLastModified(System.currentTimeMillis());
-
-        } finally {
-            IOUtils.closeStream(outputStream);
+            final FileOutputStream fileOutputStream = MyApp.getContext().openFileOutput(fileName, Context.MODE_PRIVATE);
+            fileOutputStream.write(bytes);
+            fileOutputStream.close();
         }
-
     }
 }

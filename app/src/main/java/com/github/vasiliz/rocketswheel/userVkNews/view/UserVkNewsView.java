@@ -1,12 +1,10 @@
 package com.github.vasiliz.rocketswheel.userVkNews.view;
 
 import android.app.Application;
-
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatDelegate;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.github.vasiliz.rocketswheel.R;
@@ -17,7 +15,7 @@ import com.github.vasiliz.rocketswheel.userVkNews.presenter.UserVkNewsPresenter;
 import com.github.vasiliz.rokets.RocketActivity;
 import com.github.vasiliz.rokets.RocketPresenter;
 
-//TODO if class extend activity it should have name ....Activity
+
 public class UserVkNewsView extends RocketActivity implements IUserVkNewsView {
 
     private UserVkNewsPresenter mUserVkNewsPresenter;
@@ -63,8 +61,8 @@ public class UserVkNewsView extends RocketActivity implements IUserVkNewsView {
         mFragmentTransaction.commit();
 
 
-        mShowUserNews.setOnClickListener(replacedFragments);
-        mShowMessages.setOnClickListener(replacedFragments);
+      /*  mShowUserNews.setOnClickListener(replacedFragments);
+        mShowMessages.setOnClickListener(replacedFragments);*/
 
     }
 
@@ -73,17 +71,16 @@ public class UserVkNewsView extends RocketActivity implements IUserVkNewsView {
 
     }
 
-    //todo add this method for model #2
     @Override
     public void hideProgress() {
 
     }
 
-    private View.OnClickListener replacedFragments = new View.OnClickListener() {
+   /* private View.OnClickListener replacedFragments = new View.OnClickListener() {
 
         @Override
         public void onClick(final View v) {
-            mFragmentTransaction = getFragmentManager().beginTransaction();
+         //   mFragmentTransaction = getFragmentManager().beginTransaction();
 
             switch (v.getId()) {
                 case R.id.display_news_image_view:
@@ -99,6 +96,6 @@ public class UserVkNewsView extends RocketActivity implements IUserVkNewsView {
                     break;
             }
         }
-    };
+    };*/
 }
 

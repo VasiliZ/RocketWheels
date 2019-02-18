@@ -10,5 +10,5 @@ public interface IDiskCache {
 
     File getFile(String pImageUrl) throws IOException, NoSuchAlgorithmException;
 
-    void save(String pUrl, Bitmap pBitmap) throws IOException, NoSuchAlgorithmException;
+    void save(String pUrl, Bitmap pBitmap) throws IOException;
 }
